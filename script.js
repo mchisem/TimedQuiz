@@ -1,9 +1,10 @@
 //variables//
 var start = document.querySelector("#start-button");
 var highScore = document.getElementById('score');
-var timer = document.getElementById('timer');
+var timer = document.querySelector("#timer");
 var navbar = document.querySelector("#nav");
 var intro = document.querySelector("#intro");
+var questionContainer = document.querySelector(".questions-container");
 
 var secondsLeft = 75;
 
@@ -15,6 +16,7 @@ var secondsLeft = 75;
  function setTime() {
      navbar.classList.remove("hide");
      intro.classList.add("hide");
+     questionContainer.classList.remove("hide");
 
      var timerInterval = setInterval(function(){
          secondsLeft --;

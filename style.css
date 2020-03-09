@@ -40,16 +40,12 @@ h1 {
     padding: 5px;
     width: 104px;
     margin-left: 14%;
-    border-radius: 0px;
+    border-radius: none;
 }
 
-/* #start-button {
-   padding-left: 31px;
-   padding-right: 31px;
-} */
-
-#start {
+.start {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .button:hover {
@@ -63,3 +59,16 @@ h1 {
     font-size: 30px;
 }
 
+/*  QUIZ  */
+/* QUESTION */
+/*CONTAINER*/
+h3 {
+    font-size: 40px;
+}
+.questions-container {
+    margin-top: 15%;
+    width: 960px;
+    background-color: grey;
+    text-align: center;
+    margin-left: 18%;
+}
