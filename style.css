@@ -15,8 +15,11 @@ body {
 
 /* INITIAL DISPLAY */
 #intro {
-    margin-left: 38%;
-    margin-top: 25%;
+    width: 960px;
+    margin-left: 17%;
+    margin-top: 20%;
+    text-align: center;
+    padding: 5px;
 }
 
 h1 {
@@ -39,13 +42,15 @@ h1 {
     text-decoration: none;
     padding: 5px;
     width: 104px;
-    margin-left: 14%;
-    border-radius: none;
+    border-radius: 0%;
 }
 
 .start {
-    margin-bottom: 20px;
-    width: 100%;
+    margin-bottom: 25px;
+}
+
+#start-button {
+    margin-left: 44.5%;
 }
 
 .button:hover {
