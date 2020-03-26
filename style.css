@@ -54,7 +54,8 @@ h1 {
 }
 
 .button:hover {
-    background-color: grey;
+    background-color: black;
+    color: white;
 }
 
 /*  QUIZ  */
@@ -64,12 +65,16 @@ h1 {
     font-size: 30px;
 }
 
-#highscores {
+#exit {
     text-decoration: none;
     color: black;
     font-size: 30px;
     float: right;
     margin-top: -4.5%;
+}
+
+#exit:hover {
+    opacity: 0.5;
 }
 
 /*  QUIZ  */
@@ -81,16 +86,19 @@ h3 {
 }
 .questions-container {
     position: relative;
+    margin: 80px;
     margin-top: 15%;
-    width: 960px;
-    background-color: grey;
+    /* width: 100%; */
+    /* width: 960px; */
+    background-color: black;
     text-align: center;
-    margin-left: 18%;
-    padding-bottom: 5px;
+    /* margin-left: 18%; */
+    padding-bottom: 15px;
+    color: white;
 }
 
 .answer {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: auto;
     margin: 10px;
     font-size: 20px;
@@ -98,7 +106,18 @@ h3 {
 }
 
 .answer:hover {
-    background-color: darkgray;
+    background-color: white;
+    color: black;
+}
+
+#next {
+    padding: 5px;
+    color: white;
+}
+
+#next:hover {
+    background-color: white;
+    color: black;
 }
 
 .right {

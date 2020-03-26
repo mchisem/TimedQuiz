@@ -8,14 +8,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- nav bar -->
-<nav class="hide" id="nav">
-    <div class="top" id="timer">Time: </div>
-    <div class="top" id="score">Score:</div>
-
-    <a href="highscores.html" id="highscores">Highscores</a>
-</nav>
-
 <!-- song -->
 <audio id="mySong">
     <iframe allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/39983793&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
@@ -33,14 +25,24 @@
     </div>
 </div> 
 
+<!-- nav bar -->
+<nav class="hide" id="nav">
+    <div class="top" id="timer">Time: </div>
+    <div class="top" id="score">Score:</div>
+
+    <div id="exit">Exit</div>
+</nav>
+
 <!-- questions container -->
 <div class="questions-container hide">
     <h3 class="title"></h3>
     <div class="answers-container">
-        <div class="answer one"></div>
-        <div class="answer two"></div>
-        <div class="answer three"></div>
-        <div class="answer four"></div>
+        <div class="answer one" id="one"></div>
+        <div class="answer two" id="two"></div>
+        <div class="answer three" id="three"></div>
+        <div class="answer four" id="four"></div>
+
+        <button class="button" id="next">Next</button>
     </div>
 </div>
 
