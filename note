@@ -1,0 +1,24 @@
+Making a timed quiz!
+
+1) Create the html files
+    *Home page AKA Quiz page AKA Index.html
+    *Highscore page 
+        > will create a button on the homepage that leads to this
+
+2) Create the buttons that will either start 
+the game or take you to the homepage
+    * start game button
+        > will display question and answers
+    * Highscore button
+        > will take you to the high score page
+
+3) Once you start the game the timer will go off
+
+4) If you get an answer right that will be added to your 
+overrall score.
+
+5) If you get an answer wrong that will deduct 20 seconds
+from the timer.
+
+6) Once the timer is over the game will end and show you how
+many points you accumulated

@@ -1,6 +1,6 @@
 //variables//
 var start = document.querySelector("#start-button");
-var score = document.querySelector("#score");
+var highScore = document.querySelector("#score");
 var timer = document.querySelector("#timer");
 var navbar = document.querySelector("#nav");
 var intro = document.querySelector("#intro");
@@ -8,7 +8,13 @@ var questionContainer = document.querySelector(".questions-container");
 
 let score = 0;
 
-//start game funtion//
+//start game event listener//
+start.addEventListener('click', function(){
+    setTime();
+    nextQuestion();
+})
+
+//timer function//
 var secondsLeft = 75;
 
  function setTime() {
@@ -22,13 +28,11 @@ var secondsLeft = 75;
 
          if(secondsLeft === 0) {
              clearInterval(timerInterval);
+             endGame();
              console.log("Game Over!");
          }
-
-     }, 1000); 
+     }, 1000);
  }
- 
- start.addEventListener('click', setTime);
 
 //quiz question array//
 var questions = [
@@ -47,7 +51,7 @@ var questions = [
     },
     {
         title: "________ control behavior in JS and determines if pieces of code can run.",
-        choices: ["Arrays","JSON.parse",,"Booleans","Conditionals"],
+        choices: ["Arrays","JSON.parse","Booleans","Conditionals"],
         answer: "Conditionals"
     },
     {
@@ -57,10 +61,39 @@ var questions = [
     },
     {
         title: "Function parameters are:",
-        choices: ["Names listed in the function definition","Values passed to, and received by the function",
-        "",""],
+        choices: ["Names listed in a function's definition","Values",
+        "Conditionals","Operations"],
         answer: "Names listed in the function definition"
     }
 ]
 
-var hasAnswered = false;
+function nextQuestion() {
+    
+}
+
+// score increases with right answer
+function right() {
+    score += 20;
+    nextQuestion();
+  }
+
+// decreases time for wrong answer
+function wrong() {
+    secondsLeft -= 20;
+    nextQuestion(); 
+}
+
+//end game screen//
+function endGame() {
+    clearInterval(timer);
+  
+    var gameOver =
+      `
+      <h3>Game Over!</h3>
+      <div class="answers-container">
+        You got ${score}/100
+      <div>
+
+      `
+    document.querySelector(".questions-container").innerHTML = gameOver;
+  }
