@@ -22,3 +22,15 @@ from the timer.
 
 6) Once the timer is over the game will end and show you how
 many points you accumulated
+
+
+FUNCTIONS!
+function startGame(){}
+
+function setTimer(){}
+
+function nextQuestion(){}
+
+function endGame(){}
+
+function inputName(){}

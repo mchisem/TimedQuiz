@@ -1,5 +1,5 @@
 //variables//
-var start = document.querySelector("#start-button");
+const start = document.querySelector("#start-button");
 var exit = document.querySelector("#exit");
 var next = document.querySelector("#next");
 var highScore = document.querySelector("#score");
@@ -9,16 +9,19 @@ var intro = document.querySelector("#intro");
 var questionContainer = document.querySelector(".questions-container");
 
 let score = 0;
+var secondsLeft = 75;
+
+var shuffledQuestions, currentQuestion
 
 //start game event listener//
 start.addEventListener('click', function(){
+    currentQuestion = 0
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
     setTime();
     nextQuestion();
 })
 
 //timer function//
-var secondsLeft = 75;
-
 function setTime() {
     navbar.classList.remove("hide");
     intro.classList.add("hide");
@@ -36,76 +39,87 @@ function setTime() {
     }, 1000);
 }
 
-//quiz question array//
+//quiz question/answer array//
 var questions = [
     {
-        title: "What is JavaScript?",
-        choices: ["A scripting language used to create dynamic website content",
-        "A form of CSS used to hardcode website styling","A place for writers to drink coffee",
-        "A conditional oriented programming language"],
-        answer: "A scripting language used to create dynamic website content"
+        question: 'What is Javascript?',
+        answers: [
+            {text: "A scripting language used to create dynamic website content", correct: true},
+            {text: "A form of CSS used to hardcode website styling", correct: false},
+            {text: "A place for writers to drink coffee", correct: false},
+            {text: "A conditional oriented programming language", correct: false}
+        ]
     },
     {
-        title: "Objects that let you communicate in JS",
-        choices: ["Document Object Modal","Document Object Model",
-        "Designed Object Model","Data Object Modal"],
-        answer: "Document Object Model"
+        question: "Objects that let you communicate in JS",
+        answers: [
+            {text: "Document Object Modal", correct: false},
+            {text: "Document Object Model", correct: true},
+            {text:"Designed Object Model", correct: false},
+            {text: "Data Object Modal", correct: false}
+        ]
     },
     {
-        title: "________ control behavior in JS and determines if pieces of code can run.",
-        choices: ["Arrays","JSON.parse","Booleans","Conditionals"],
-        answer: "Conditionals"
+        question: "________ control behavior in JS and determines if pieces of code can run.",
+        answers: [
+            {text: "Arrays", correct: false},
+            {text: "JSON.parse", correct: false},
+            {text:"Booleans", correct: false},
+            {text: "Conditionals", correct: true}
+        ]
     },
     {
-        title: "This function allows a short syntax for writing function expressions.",
-        choices: ["Expression","Super","Arrow","Declaration"],
-        answer: "Arrow"
+        question: "This function allows a short syntax for writing function expressions.",
+        answers: [
+            {text: "Expression", correct: false},
+            {text: "Super", correct: false},
+            {text:"Arrow", correct: true},
+            {text: "Declaration", correct: false}
+        ]
     },
     {
-        title: "Function parameters are:",
-        choices: ["Names listed in a function's definition","Values",
-        "Conditionals","Operations"],
-        answer: "Names listed in the function definition"
+        question: "Function parameters are:",
+        answers: [
+            {text: "Names listed in a function's definition", correct: true},
+            {text: "Values", correct: false},
+            {text:"Conditionals", correct: false},
+            {text: "Operations", correct: false}
+        ]
     }
 ]
 
-var question = document.querySelector(".title");
-var answerOne = document.querySelector("#one");
-var answerTwo = document.querySelector("#two");
-var answerThree = document.querySelector("#three");
-var answerFour = document.querySelector("#four");
+// display quesitons and answers // 
+var questionTitle = document.querySelector(".title");
+var answers = document.querySelector(".answer");
 
-var questionCounter = 0;
-var currentQuestion;
-var hasAnswered = false;
-
-
-function nextQuestion() {
-    for(i = 0; i < questions.length; i++) {
-        question.innerHTML = questions.title;
-
-        // if (questionCounter < questions.length) {
-        //     // currentQuestion = questions[questionCounter];
-        //     question.innerHTML = questions.title;
-        // }
-
-        // else {
-        //     console.log("else");
-        // }
-    }
-    
+function showQuestion(question) {
+    questionTitle.innerHTML = question.question
+    question.answers.forEach(function (answer) {
+        var button = document.createElement("button");
+        button.innerText = answer.text
+        button.classList.add("answer");
+        answers.appendChild(button)
+    })
 }
 
-// score increases with right answer
-function right() {
-    score += 20;
+// next button event listener//
+next.addEventListener('click', function(){
+    currentQuestion++;
     nextQuestion();
-  }
+})
 
-// decreases time for wrong answer
-function wrong() {
-    secondsLeft -= 20;
-    nextQuestion(); 
+// randomly shuffles questions//
+function nextQuestion() {
+    clearAnswers();
+    showQuestion(shuffledQuestions[currentQuestion]);
+}
+
+// // clear out the previous answers//
+function clearAnswers(){
+    while(answers.firstChild) {
+        answers.removeChild
+        (answers.firstChild)
+    }
 }
 
 //end game screen//
@@ -117,6 +131,10 @@ function endGame() {
       <h3>Game Over!</h3>
       <div class="answers-container">
         You got ${score}/100
+        <div>
+        <input id="name" placeholder="Your Name"></input>
+        <button class="button" id="submit">Submit</button>
+        </div>
       <div>
 
       `
@@ -125,6 +143,7 @@ function endGame() {
 
 // to bring up input after quiz
 var createInput;
+
 function inputName () {
     quizButton.textContent = "Submit";
     quizQuestion.textContent = "Input your name";
@@ -142,12 +161,10 @@ function submitName () {
     localStorage.setItem("name", name);
     localStorage.setItem("score", score)
     window.location.href = "highscores.html";
-
 }
 
 //exit the game//
 exit.addEventListener('click', function(){
-    clearInterval(timer);
     navbar.classList.add("hide");
     intro.classList.remove("hide");
     questionContainer.classList.add("hide");

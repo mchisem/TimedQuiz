@@ -5,12 +5,19 @@
 
 body {
     background-color: seagreen !important;
-    overflow: hidden;
 }
 
 /* HIDE */
 .hide {
     display: none;
+}
+
+.right {
+    background-color: green;
+}
+
+.wrong {
+    background-color: darkred;
 }
 
 /* INITIAL DISPLAY */
@@ -75,6 +82,7 @@ h1 {
 
 #exit:hover {
     opacity: 0.5;
+    cursor: pointer;
 }
 
 /*  QUIZ  */
@@ -98,34 +106,33 @@ h3 {
 }
 
 .answer {
-    /* border: 2px solid black; */
     width: auto;
-    margin: 10px;
+    margin: 15px;
     font-size: 20px;
     padding: 3px;
+    text-decoration: none;
+    border: 2px solid black;
 }
 
-.answer:hover {
-    background-color: white;
-    color: black;
+button {
+    display: grid;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
 }
 
 #next {
+    width: 100%;
     padding: 5px;
+    font-size: 25px;
     color: white;
 }
 
 #next:hover {
-    background-color: white;
-    color: black;
-}
-
-.right {
-    background-color: green;
-}
-
-.wrong {
-    background-color: darkred;
+    cursor: pointer;
 }
 
 /*  HIGH  */
