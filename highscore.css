@@ -1,0 +1,34 @@
+/* BODY */
+* {
+    box-sizing: border-box;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to left, rgb(42, 95, 116), seagreen);
+    z-index: -1;
+}
+
+/* NAVBAR */
+#home {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+#home:hover {
+    transform-origin: 3px;
+    opacity: 0.5;
+}
+
+/* TABLE */
+.table {
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin-top: 15%;
+}

@@ -98,7 +98,7 @@ function showQuestion(question) {
         var button = document.createElement("button");
         button.innerText = answer.text
         button.classList.add("answer");
-        answers.appendChild(button)
+        answers.appendChild(button);
     })
 }
 
@@ -163,9 +163,3 @@ function submitName () {
     window.location.href = "highscores.html";
 }
 
-//exit the game//
-exit.addEventListener('click', function(){
-    navbar.classList.add("hide");
-    intro.classList.remove("hide");
-    questionContainer.classList.add("hide");
-})
