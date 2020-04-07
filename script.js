@@ -11,14 +11,16 @@ var questionContainer = document.querySelector(".questions-container");
 let score = 0;
 var secondsLeft = 75;
 
-var shuffledQuestions, currentQuestion
+var shuffledQuestions;
+var currentQuestion = 0;
 
 //start game event listener//
 start.addEventListener('click', function(){
-    currentQuestion = 0
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    score = 0;
+    currentQuestion = 0;
+    shuffledQuestions = questions.sort(() => Math.random() - 1);
     setTime();
-    nextQuestion();
+    nextShuffle();
 })
 
 //timer function//
@@ -86,14 +88,14 @@ var questions = [
             {text: "Operations", correct: false}
         ]
     }
-]
+];
 
 // display quesitons and answers // 
 var questionTitle = document.querySelector(".title");
 var answers = document.querySelector(".answer");
 
 function showQuestion(question) {
-    questionTitle.innerHTML = question.question
+    questionTitle.innerHTML = question.question;
     question.answers.forEach(function (answer) {
         var button = document.createElement("button");
         button.innerText = answer.text
@@ -105,22 +107,28 @@ function showQuestion(question) {
 // next button event listener//
 next.addEventListener('click', function(){
     currentQuestion++;
-    nextQuestion();
+    // checkAnswers();
+    nextShuffle();
 })
 
 // randomly shuffles questions//
-function nextQuestion() {
+function nextShuffle() {
     clearAnswers();
     showQuestion(shuffledQuestions[currentQuestion]);
 }
 
-// // clear out the previous answers//
+// clear out the previous answers//
 function clearAnswers(){
     while(answers.firstChild) {
         answers.removeChild
         (answers.firstChild)
     }
 }
+
+// check answer function //
+// function checkAnswers() {
+    
+// }
 
 //end game screen//
 function endGame() {
