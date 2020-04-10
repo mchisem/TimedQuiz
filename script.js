@@ -18,7 +18,7 @@ var currentQuestion = 0;
 start.addEventListener('click', function(){
     score = 0;
     currentQuestion = 0;
-    shuffledQuestions = questions.sort(() => Math.random() - 1);
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
     setTime();
     nextShuffle();
 })
@@ -57,7 +57,7 @@ var questions = [
         answers: [
             {text: "Document Object Modal", correct: false},
             {text: "Document Object Model", correct: true},
-            {text:"Designed Object Model", correct: false},
+            {text: "Designed Object Model", correct: false},
             {text: "Data Object Modal", correct: false}
         ]
     },
@@ -66,7 +66,7 @@ var questions = [
         answers: [
             {text: "Arrays", correct: false},
             {text: "JSON.parse", correct: false},
-            {text:"Booleans", correct: false},
+            {text: "Booleans", correct: false},
             {text: "Conditionals", correct: true}
         ]
     },
@@ -75,7 +75,7 @@ var questions = [
         answers: [
             {text: "Expression", correct: false},
             {text: "Super", correct: false},
-            {text:"Arrow", correct: true},
+            {text: "Arrow", correct: true},
             {text: "Declaration", correct: false}
         ]
     },
@@ -84,7 +84,7 @@ var questions = [
         answers: [
             {text: "Names listed in a function's definition", correct: true},
             {text: "Values", correct: false},
-            {text:"Conditionals", correct: false},
+            {text: "Conditionals", correct: false},
             {text: "Operations", correct: false}
         ]
     }
@@ -101,13 +101,43 @@ function showQuestion(question) {
         button.innerText = answer.text
         button.classList.add("answer");
         answers.appendChild(button);
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+          }
+          button.addEventListener('click', pickAnswer)
     })
+}
+
+// 
+function pickAnswer(e) {
+    const selectedAnswer = e.target
+    const correct = selectedAnswer.dataset.correct
+    checkAnswer(document.body, correct)
+    Array.from(answers.children).forEach(button => {
+    checkAnswer(button, button.dataset.correct)
+})
+    if (shuffledQuestions.length > currentQuestion + 1) {
+        console.log("done!");
+    } else {
+        endGame();
+    }
+}
+
+function checkAnswer(button, correct) {
+    if(correct) {
+        button.classList.add("right");
+        score+=10;
+        highScore.textContent = 'Score: ' + score;
+
+    } else {
+        button.classList.add("wrong");
+        secondsLeft -=5;
+    }
 }
 
 // next button event listener//
 next.addEventListener('click', function(){
     currentQuestion++;
-    // checkAnswers();
     nextShuffle();
 })
 
@@ -125,11 +155,6 @@ function clearAnswers(){
     }
 }
 
-// check answer function //
-// function checkAnswers() {
-    
-// }
-
 //end game screen//
 function endGame() {
     clearInterval(timer);
@@ -140,8 +165,8 @@ function endGame() {
       <div class="answers-container">
         You got ${score}/100
         <div>
-        <input id="name" placeholder="Your Name"></input>
-        <button class="button" id="submit">Submit</button>
+            <input id="name" placeholder="Your Name"></input>
+            <button class="button" id="submit">Submit</button>
         </div>
       <div>
 
@@ -149,25 +174,17 @@ function endGame() {
     document.querySelector(".questions-container").innerHTML = gameOver;
   }
 
-// to bring up input after quiz
-var createInput;
+// end quiz score/input name
+var input =document.querySelector("#name");
+var submit = document.querySelector("#submit");
 
 function inputName () {
-    quizButton.textContent = "Submit";
-    quizQuestion.textContent = "Input your name";
-    quizAnswerContainer.classList.remove("active");
-
-    createInput = document.createElement('input');
-    quizContentContainer.appendChild(createInput);
-
-
-    quizButton.addEventListener("click", submitName)
+    submit.addEventListener("click", userInfo)
 }
 
-function submitName () {
+function userInfo(){
     var name = createInput.value;
     localStorage.setItem("name", name);
-    localStorage.setItem("score", score)
+    localStorage.setItem("score", score);
     window.location.href = "highscores.html";
 }
-

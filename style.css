@@ -14,14 +14,6 @@ body     {
     display: none;
 }
 
-.right {
-    background-color: green;
-}
-
-.wrong {
-    background-color: darkred;
-}
-
 /* INITIAL DISPLAY */
 #intro {
     width: 100%;
@@ -97,7 +89,7 @@ h3 {
 .questions-container {
     position: relative;
     margin: 50px;
-    margin-top: 13%;
+    margin-top: 12%;
     text-align: center;
     padding-bottom: 15px;
     color: black;
@@ -105,13 +97,22 @@ h3 {
 }
 
 .answer {
+    text-align: left;
     width: auto;
     margin: 15px;
     font-size: 20px;
-    padding: 3px;
+    padding: 10px;
     text-decoration: none;
     background: none;
     color: white;
+}
+
+.answer.right {
+    background-color: green;
+}
+
+.answer.wrong {
+    background-color: darkred;
 }
 
 button {
