@@ -72,7 +72,7 @@ h1 {
     color: white;
     font-size: 30px;
     float: right;
-    margin-top: -4.5%;
+    top: 0;
 }
 
 #exit:hover {
